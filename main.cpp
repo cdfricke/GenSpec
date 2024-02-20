@@ -7,6 +7,9 @@ Synopsis: main implementation for stellar absorption spectra program. Executable
 Contributors: Prof. Donald Terndrup, Nathan Holty for completed Python implementation
 
 Command Line Entry:
+Compiled in Windows Powershell:
+    g++ main.cpp -o genspec.exe -I C:\Python312\include -I include -I C:\Python312\Lib\site-packages\numpy\core\include -L C:\Python312\libs -lpython312
+    
 Once the program is running (GenSpec.exe), it will prompt you for several entries. These entries are explained with a CMD terminal example provided below.
 
 Terminal:
@@ -209,10 +212,10 @@ int main()
 
     // SAVE RESULTING SPECTRUM AS .PNG, .JPG, AND .PDF FILES
     cout << "Generating files...\n";
-    plt::save("saved_spectra\\" + Spectrum_Name + ".png");
-    plt::save("saved_spectra\\" + Spectrum_Name + ".jpg");
-    plt::save("saved_spectra\\" + Spectrum_Name + ".pdf");
-    cout << "Done!\n";
+    //plt::save("saved_spectra\\" + Spectrum_Name + ".png");
+    //plt::save("saved_spectra\\" + Spectrum_Name + ".jpg");
+    //plt::save("saved_spectra\\" + Spectrum_Name + ".pdf");
+    //cout << "Done!\n";
     plt::show();
 
 }
