@@ -12,3 +12,5 @@ This command gives the include path for Python 3.12, NumPy (within Python), and 
 In addition, you must link the necessary libraries, which this command does.\
 
   ```g++ main.cpp -o genspec.exe -I C:\Python312\include -I include```
+
+These compile options were adapted from [this](https://www.youtube.com/watch?v=Xp3ntYGs8No) YouTube video.
