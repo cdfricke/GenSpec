@@ -11,6 +11,6 @@ is that Python 3.12 is installed in C:\Python312, and the NumPy module has been 
 This command gives the include path for Python 3.12, NumPy (within Python), and our Matplotlibcpp.h file.
 In addition, you must link the necessary libraries, which this command does.\
 
-  ```g++ main.cpp -o genspec.exe -I C:\Python312\include -I include```
+  ```g++ main.cpp -o genspec.exe -I C:\Python312\include -I include -I C:\Python312\Lib\site-packages\numpy\core\include -L C:\Python312\libs -lpython312```
 
 These compile options were adapted from [this](https://www.youtube.com/watch?v=Xp3ntYGs8No) YouTube video.
