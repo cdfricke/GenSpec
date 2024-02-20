@@ -1,7 +1,7 @@
 Programmer: Connor Fricke\
 Latest Revision:\
-  11-Dec-2023 --- Original Version: Created for Astronomy 3350 Final Project\
-  19-Feb-2024 --- Revisited for adaptation to GitHub project.
+\t 11-Dec-2023 --- Original Version: Created for Astronomy 3350 Final Project\
+\t 19-Feb-2024 --- Revisited for adaptation to GitHub project.
 
 
 
