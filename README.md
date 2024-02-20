@@ -10,4 +10,5 @@ The following compiler command is used to compile and run this project. Currentl
 is that Python 3.12 is installed in C:\Python312, and the NumPy module has been installed as well.
 This command gives the include path for Python 3.12, NumPy (within Python), and our Matplotlibcpp.h file.
 In addition, you must link the necessary libraries, which this command does.\
+
   ```g++ main.cpp -o genspec.exe -I C:\Python312\include -I include```
