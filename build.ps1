@@ -17,5 +17,11 @@ g++ .\*.cpp -o generate.exe
 # execute program with optional input redirection
 .\generate.exe 
 
+# OPTIONAL: install required packages before running python
+python -m pip install pandas
+python -m pip install matplotlib
+python -m pip install numpy
+python -m pip install PyArrow
+
 # once the program runs and stores the data, we can call python to plot
-py plot.py
+python plot.py
