@@ -12,7 +12,10 @@
 # generating the necessary points along the spectrum, which C++ is far more efficient at over Python.
 
 # compiler command with arguments
-g++ main.cpp -o genspec.exe -I C:\Python312\include -I include -I C:\Python312\Lib\site-packages\numpy\core\include -L C:\Python312\libs -lpython312
+g++ -o generate.exe generate.cpp  -I C:\Python312\include -I include -I C:\Python312\Lib\site-packages\numpy\core\include -L C:\Python312\libs -lpython312
 
 # execute program with optional input redirection
-.\genspec.exe
+.\generate.exe 
+
+# once the program runs and stores the data, we can call python to plot
+py plot.py
