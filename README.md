@@ -14,3 +14,6 @@ In addition, you must link the necessary libraries, which this command does.\
   ```g++ main.cpp -o genspec.exe -I C:\Python312\include -I include -I C:\Python312\Lib\site-packages\numpy\core\include -L C:\Python312\libs -lpython312```
 
 These compile options were adapted from [this](https://www.youtube.com/watch?v=Xp3ntYGs8No) YouTube video.
+
+TO-DO:
+Re-implement this project using a python script for the plotting after generating arrays with C++
