@@ -211,18 +211,21 @@ int main()
     plt::ylabel("Spectrum");
 
     // SAVE RESULTING SPECTRUM AS .PNG, .JPG, AND .PDF FILES
+    // NOT SURE WHY THIS DOESN'T WORK ANYMORE
+    /*
     cout << "Generating files...\n";
-    //plt::save("saved_spectra\\" + Spectrum_Name + ".png");
-    //plt::save("saved_spectra\\" + Spectrum_Name + ".jpg");
-    //plt::save("saved_spectra\\" + Spectrum_Name + ".pdf");
-    //cout << "Done!\n";
+    plt::save("saved_spectra\\" + Spectrum_Name + ".png");
+    plt::save("saved_spectra\\" + Spectrum_Name + ".jpg");
+    plt::save("saved_spectra\\" + Spectrum_Name + ".pdf");
+    cout << "Done!\n";
+    */
     plt::show();
 
 }
 
 void getFileIOName(string& fileinput, string& fileoutput)
 {
-    cout << "Please enter your data file name: ";
+    cout << "Please enter your data file name: (NOT CURRENTLY USED)";
     cin >> fileinput;
     cout << "Please enter your spectrum name: ";
     cin >> fileoutput;
