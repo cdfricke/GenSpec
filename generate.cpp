@@ -1,5 +1,5 @@
 /*
-File Name: main.cpp
+File Name: generate.cpp
 Created by: Connor Fricke
 Created on: 12/5/2023
 Latest Revision: 12/3/2023
@@ -13,15 +13,12 @@ Compiled in Windows Powershell:
 Once the program is running (generate.exe), it will prompt you for several entries. These entries are explained with a CMD terminal example provided below.
 */
 
-#include "matplotlibcpp.h"
-#include <cmath>
+#include <iostream>
 #include <ctime>
-#include <random>
 #include <fstream>
 #include <iomanip>
-#include "include\RNG.h"
+#include "RNG.h" // includes <cmath>, <random>, <vector>
 
-namespace plt = matplotlibcpp;
 using namespace std;
 
 // GLOBAL CONSTANTS
@@ -53,19 +50,6 @@ synopsis: C_linspace() is a C++ analog to the Python NumPy module function linsp
 void C_linspace(double start, double final, int n, vector<double>&);
 
 /*
-gaussian(double, double, couble, double):
-params:
-    double x - corresponding position along the x-axis
-    double center - mean of gaussian distribution
-    double N - normalization constant of function
-    double - width of gaussian distribution
-return:
-    double y - corresponds to the value y = G(x) where G(x) is the well known Gaussian distribution function.
-synopsis: implementation of the well-known Gaussian function, y = N*exp(-0.5 * (x-u)^2)
-*/
-double gaussian(double w, double center, double depth, double sigma);
-
-/*
 getPlotDetails(double&, double&, int&, int&):
 params:
     double& startw
@@ -79,41 +63,14 @@ synopsis:
 */
 void getPlotDetails(double& startw, double& finalw, int& nspect, int& nlines);
 
-/*
-normal(double, double, int, vector<double>&):
-params:
-    double mean - center of normal distribution
-    double width - width of distribution
-    int SIZE - size of the resulting vector
-    vector<double>& output - passed by reference vector of size SIZE which stores values generated according to the normal distribution
-return:
-    none
-synopsis:
-    this function is used to generate a container of values which are generated randomly using the <random> library and a random_device seed, an mt19937 generator, and the normal_distribution<double> distribution. The resulting values are expected to be distributed according to the normal distribution with a width and mean defined by the parameters mean and width
-*/
-void normal(double mean, double width, int SIZE, vector<double>&);
-
-/*
-uniform(double, double, int, vector<double>&):
-params:
-    double start - lower limit of interval over which numbers may be generated
-    double end - upper limit of interval over which numbers may be generated
-    int - size of the resulting vector
-    vector<double>& output - passed by reference vector of size SIZE which stores uniformly distributed values
-return:
-    none
-synopsis:
-    this function is used to generate a container of values which are generated randomly using the <random> library, including a random_device seed, an mt19937 generator, and the uniform_real_dstribution from the library. Resulting values are expected to be distributed normally, with upper and lower limits of their possible values set by the first two parameters passed to the function, respectively.
-*/
-void uniform(double start, double end, int SIZE, vector<double>&);
 // END OF FUNCTION HEADERS
 
 int main()
 {
     // PROMPT FOR DATAFILE_NAME and SPECTRUM_NAME
-    string DataFile_Name, Spectrum_Name;
-    getFileIOName(DataFile_Name, Spectrum_Name);
-
+    // TODO: IMPLEMENT THE NEED FOR THIS
+    //string DataFile_Name, Spectrum_Name;
+    //getFileIOName(DataFile_Name, Spectrum_Name);
 
     // PROMPT FOR SPECTRUM LIMITS, RESOLUTION, & LINES
     double start(0), end(0);
@@ -202,7 +159,7 @@ int main()
 
 void getFileIOName(string& fileinput, string& fileoutput)
 {
-    cout << "Please enter your data file name: (NOT CURRENTLY USED)";
+    cout << "Please enter your data file name: ";
     cin >> fileinput;
     cout << "Please enter your spectrum name: ";
     cin >> fileoutput;
@@ -217,8 +174,6 @@ void C_linspace(const double start, const double final, const int n, vector<doub
     // PUSH_BACK() VALUES TO VECTOR
     for (double i = start; i < final; i += step_size) { output.push_back(i); }
 }
-
-
 
 void getPlotDetails(double& startw, double& finalw, int& nspect, int& nlines)
 {
@@ -259,35 +214,4 @@ void getPlotDetails(double& startw, double& finalw, int& nspect, int& nlines)
     fflush(stdin);
 
     return;
-}
-
-void normal(double mean, double width, int SIZE, vector<double>& output)
-{
-    random_device rd;
-    mt19937 generator(rd());
-    normal_distribution<double> distribution(mean, width);
-
-    for (int i = 0; i < SIZE; i++)
-    {
-        output.push_back(distribution(generator));
-    }
-}
-
-void uniform(double start, double end, int SIZE, vector<double>& output)
-{
-    random_device rd;
-    mt19937 generator(rd());
-    uniform_real_distribution<double> distribution(start, end);
-
-    for (int i = 0; i < SIZE; i++)
-    {
-        output.push_back(distribution(generator));
-    }
-}
-
-double gaussian(double x, double center, double N, double sigma)
-{
-    // y = A*exp(-0.5 * (x-u)^2) decribes the gaussian or "normal" distribution function, which resembles the well known bell curve when plotted over a range x
-    double y = N * exp(-0.5 * pow(x - center, 2) / pow(sigma, 2));
-    return y;
 }

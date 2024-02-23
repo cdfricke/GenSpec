@@ -9,10 +9,10 @@
 #
 # The project uses a wrapper of Python's matplotlib module to do the plotting, though in the future it may be
 # more effective to do the plotting with GNUPLOT or other software. The intent is to speed up the process of
-# generating the necessary points along the spectrum, which C++ is far more efficient at over Python.
+# generating the necessary points along the spectrum, which C++ is far more efficient over Python.
 
 # compiler command with arguments
-g++ -o generate.exe generate.cpp  -I C:\Python312\include -I include -I C:\Python312\Lib\site-packages\numpy\core\include -L C:\Python312\libs -lpython312
+g++ .\*.cpp -o generate.exe
 
 # execute program with optional input redirection
 .\generate.exe 
