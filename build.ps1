@@ -17,17 +17,19 @@ $dir = Split-Path -Parent $scriptPath
 Write-Output "Current Directory: $dir"
 
 # compiler command with arguments
-g++ -c -g -Wall -o $dir\obj\generate.o $dir\src\generate.cpp -I $dir\include
-g++ -c -g -Wall -o $dir\obj\RNG.o $dir\src\RNG.cpp -I $dir\include
-g++ -o generate.exe $dir\obj\generate.o $dir\obj\RNG.o
+# NOTE: .o files get sent to \misc directory, .cpp files in \src, header files in \include
+g++ -c -g -Wall -o $dir\misc\generate.o $dir\src\generate.cpp -I $dir\include
+g++ -c -g -Wall -o $dir\misc\RNG.o $dir\src\RNG.cpp -I $dir\include
+g++ -o generate.exe $dir\misc\generate.o $dir\misc\RNG.o
 
-# execute program with optional input redirection
-.\generate.exe 
+# execute program with parameters taken from params.in
+.\generate.exe params.in
 
 # OPTIONAL: install required packages before running python
-<#
-python -m pip install pandas matplotlib numpy pyarrow
-#>
+# if packages are installed, the output of this process will be sent to install.log in \misc
+Write-Output "Installing Python Packages: see install.log for details"
+python -m pip install pandas matplotlib numpy pyarrow > $dir\misc\install.log
 
 # once the program runs and stores the data, we can call python to plot
+# NOTE: Plot results can be found in \out directory
 python plot.py

@@ -65,17 +65,21 @@ void getPlotDetails(double& startw, double& finalw, int& nspect, int& nlines);
 
 // END OF FUNCTION HEADERS
 
-int main()
+int main(int argc, char* argv[])
 {
-    // PROMPT FOR DATAFILE_NAME and SPECTRUM_NAME
-    // TODO: IMPLEMENT THE NEED FOR THIS
-    //string DataFile_Name, Spectrum_Name;
-    //getFileIOName(DataFile_Name, Spectrum_Name);
-
-    // PROMPT FOR SPECTRUM LIMITS, RESOLUTION, & LINES
+    // GET SPECTRUM LIMITS, RESOLUTION, & LINES
     double start(0), end(0);
     int nspect(0), nlines(0);
-    getPlotDetails(start, end, nspect, nlines);
+    
+    // if we are given one command line argument, we need to open the file and read it into our parameters
+    if (argc == 2)
+    {
+        ifstream fin;
+        fin.open(argv[1]); // open first command line parameter, should be a valid file with parameters
+        fin >> start >> end >> nspect >> nlines;
+    }
+    else
+        getPlotDetails(start, end, nspect, nlines);
 
     // START CLOCK (we start here because we now have all the information we will need to proceed with the entire plotting algorithm)
     clock_t t;
@@ -148,7 +152,7 @@ int main()
     cout << "CPU Time: " << t << " ticks, or " << (float)t / CLOCKS_PER_SEC << " seconds." << endl;
 
     // OUTPUT DATA TO A .TSV FOR PYTHON TO TAKE
-    ofstream arraysOut("arrays.dat");
+    ofstream arraysOut("misc\\arrays.dat");
     // ADD COMMENT TO TOP OF FILE, THEN COLUMN TITLES UNCOMMENTED
     arraysOut << "# data file from generate.cpp" << endl << "wavelengths,spectrum" << endl;
     for (int i = 0; i < num_pts; i++)

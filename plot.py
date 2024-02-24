@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 # read data from .cpp output
-df = pd.read_csv("arrays.dat", comment='#', sep=',')
+df = pd.read_csv("misc\\arrays.dat", comment='#', sep=',')
 
 # initialize plot
 fig, ax = plt.subplots()
