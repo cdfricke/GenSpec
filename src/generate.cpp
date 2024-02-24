@@ -108,6 +108,8 @@ int main()
     // FOLLOWING ALGORITHM ORIGINALLY IMPLEMENTED IN PYTHON BY NATHAN HOLTY TO GENERATE FULL SPECTRUM
     vector<double> total_spectrum(nspect, 1.0);
 
+    int num_pts(0);
+
     // LOOP OVER EACH LINE, GENERATE A SPECTRUM WITH A SINGLE LINE, AND MULTIPLY THEM TOGETHER
     for (int i = 0; i < nlines; i++)
     {
@@ -122,7 +124,8 @@ int main()
             wavelengths.pop_back();
         }
 
-        for (int j = 0; j < wavelengths.size(); j++)
+        num_pts = wavelengths.size();
+        for (int j = 0; j < num_pts; j++)
         {
             double w = wavelengths[j];
             double d = -gaussian(w, linecenter, linedepth, LSIGMA);
@@ -130,7 +133,7 @@ int main()
         }
 
         // MULTIPLY THE SPECTRA
-        for (int k = 0; k < total_spectrum.size(); k++)
+        for (int k = 0; k < num_pts; k++)
         {
             total_spectrum[k] = total_spectrum[k] * line_spectrum[k];
         }
@@ -148,7 +151,7 @@ int main()
     ofstream arraysOut("arrays.dat");
     // ADD COMMENT TO TOP OF FILE, THEN COLUMN TITLES UNCOMMENTED
     arraysOut << "# data file from generate.cpp" << endl << "wavelengths,spectrum" << endl;
-    for (int i = 0; i < total_spectrum.size(); i++)
+    for (int i = 0; i < num_pts; i++)
     {
         arraysOut << fixed << setprecision(10) <<  wavelengths[i] << "," << total_spectrum[i] << endl;
     }
