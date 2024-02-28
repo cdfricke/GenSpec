@@ -5,7 +5,7 @@ import pandas as pd
 df = pd.read_csv("misc\\arrays.dat", comment='#', sep=',')
 
 # initialize plot
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=(16, 8))
 
 # plot second column against first column and format
 ax.plot(df['wavelengths'], df['spectrum'])
